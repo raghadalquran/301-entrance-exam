@@ -6,6 +6,7 @@ var arrayToPush = [];
 var newt;
 var variable1;
 var variable2;
+
 //create the constructor function
 function Taskes(array, date) {
     this.array = array;
@@ -23,6 +24,8 @@ function submitfun(event) {
     variable2 = event.target.date;
 
     new Taskes(variable1, variable1);
+    setItem();
+
 }
 
 //render the result from the form
@@ -37,8 +40,7 @@ function render() {
         ulEl.appendChild(liEl);
         liEl.textContent = newt[i].variable2;
     }
-    setItem();
-
+    getItem();
 }
 //set to the local storge
 function setItem() {
@@ -47,8 +49,10 @@ function setItem() {
 }
 //get from the local storge
 function getItem() {
-    newt = JSON.parse(localStorage.getItem('toString'));
+    if(localStorage.toString){
+        newt = JSON.parse(localStorage.getItem('toString'));
+
+    }
     // console.log(newt);
-    render();
 }
-getItem();
+render();
