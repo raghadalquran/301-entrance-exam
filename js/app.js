@@ -1,7 +1,7 @@
 'use strict';
 
 //Global variables
-var sectionEl = document.createElementById('result');
+var sectionEl = document.createElement('section');
 var arrayToPush = [];
 var newt;
 var variable1;
@@ -13,10 +13,10 @@ function Taskes(array, date) {
     arrayToPush.push(this);
 }
 
-
 //The form
 var myform = document.getElementById('my-form');
-myform.addEventListener('submit', submitfun());
+myform.addEventListener('submit', submitfun);
+
 function submitfun(event) {
     event.preventdefult();
     variable1 = event.target.text;
@@ -37,8 +37,9 @@ function render() {
         ulEl.appendChild(liEl);
         liEl.textContent = newt[i].variable2;
     }
-}
+    setItem();
 
+}
 //set to the local storge
 function setItem() {
     var toString = JSON.stringify(arrayToPush);
@@ -48,4 +49,6 @@ function setItem() {
 function getItem() {
     newt = JSON.parse(localStorage.getItem('toString'));
     // console.log(newt);
+    render();
 }
+getItem();
